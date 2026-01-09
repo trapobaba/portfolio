@@ -69,6 +69,11 @@ let cursorFollower;
 
 // -------------------- Initialize App --------------------
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize smooth scroll first to prevent layout jump
+  initSmoothScroll();
+  // Lock scroll during preloader
+  document.body.style.overflow = 'hidden';
+  // Start preloader
   initPreloader();
 });
 
@@ -81,6 +86,7 @@ function initPreloader() {
   const shapes = document.querySelectorAll('.preloader__shape');
   
   if (!preloader) {
+    document.body.style.overflow = '';
     initApp();
     return;
   }
@@ -94,8 +100,8 @@ function initPreloader() {
     { 
       scale: 1, 
       opacity: 0.4, 
-      duration: 1.5, 
-      stagger: 0.2,
+      duration: 1.2, 
+      stagger: 0.15,
       ease: "power2.out"
     }
   );
@@ -105,24 +111,24 @@ function initPreloader() {
     opacity: 1,
     y: 0,
     rotateX: 0,
-    duration: 0.8,
-    stagger: 0.06,
-    ease: "back.out(1.7)"
-  }, "-=1");
+    duration: 0.6,
+    stagger: 0.05,
+    ease: "back.out(1.5)"
+  }, "-=0.8");
   
   // Counter animation
   let progress = { value: 0 };
   
   tl.to(progress, {
     value: 100,
-    duration: 2.5,
+    duration: 2,
     ease: "power2.inOut",
     onUpdate: () => {
       const val = Math.round(progress.value);
       counter.textContent = val;
       progressBar.style.width = val + '%';
     }
-  }, "-=0.5");
+  }, "-=0.3");
   
   // After loading complete - exit animation
   tl.add(() => {
@@ -133,53 +139,56 @@ function initPreloader() {
     const exitTl = gsap.timeline({
       onComplete: () => {
         preloader.style.display = 'none';
-        initApp();
+        document.body.style.overflow = '';
+        // Small delay before starting app animations
+        setTimeout(() => {
+          initApp();
+        }, 100);
       }
     });
     
     // Letters fly up and out
     exitTl.to(letters, {
-      y: -80,
+      y: -60,
       opacity: 0,
       rotateX: 90,
-      duration: 0.5,
-      stagger: 0.03,
+      duration: 0.4,
+      stagger: 0.02,
       ease: "power2.in"
     });
     
     // Counter fades
     exitTl.to([counter.parentElement, progressBar.parentElement], {
       opacity: 0,
-      y: -30,
-      duration: 0.4,
+      y: -20,
+      duration: 0.3,
       ease: "power2.in"
-    }, "-=0.3");
+    }, "-=0.2");
     
     // Shapes expand and fade
     exitTl.to(shapes, {
-      scale: 3,
+      scale: 2,
       opacity: 0,
-      duration: 0.8,
-      stagger: 0.1,
+      duration: 0.6,
+      stagger: 0.08,
       ease: "power2.in"
-    }, "-=0.4");
+    }, "-=0.3");
     
     // Background slides up (curtain reveal)
     exitTl.to('.preloader__bg', {
       scaleY: 0,
       transformOrigin: 'top',
-      duration: 1,
-      stagger: 0.15,
-      ease: CustomEase.create("custom", "M0,0 C0.25,0 0.1,1 1,1")
-    }, "-=0.6");
+      duration: 0.8,
+      stagger: 0.1,
+      ease: "power3.inOut"
+    }, "-=0.4");
   }
 }
 
-// Initialize all app features
+// Initialize all app features (after preloader)
 function initApp() {
   initAnimatedNoise();
   createCustomCursor();
-  initSmoothScroll();
   initHeader();
   initMobileMenu();
   initHeroAnimations();
@@ -290,12 +299,45 @@ function initSmoothScroll() {
 function initHeader() {
   const header = document.querySelector('.header');
   
+  // Scroll effect only - animation handled separately
   ScrollTrigger.create({
     trigger: 'body',
     start: 'top -100px',
     onEnter: () => header.classList.add('scrolled'),
     onLeaveBack: () => header.classList.remove('scrolled'),
   });
+}
+
+function animateHeader() {
+  const header = document.querySelector('.header');
+  const logo = header.querySelector('.logo');
+  const navLinks = header.querySelectorAll('.nav-link');
+  const ctaBtn = header.querySelector('.nav-cta');
+  
+  const headerTl = gsap.timeline();
+  
+  headerTl
+    .fromTo(header, 
+      { opacity: 0, y: -30 },
+      { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
+    )
+    .fromTo(logo, 
+      { opacity: 0, x: -20 },
+      { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out' }, 
+      '-=0.4'
+    )
+    .fromTo(navLinks, 
+      { opacity: 0, y: -15 },
+      { opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: 'power2.out' }, 
+      '-=0.3'
+    )
+    .fromTo(ctaBtn, 
+      { opacity: 0, scale: 0.9 },
+      { opacity: 1, scale: 1, duration: 0.4, ease: 'back.out(1.5)' }, 
+      '-=0.2'
+    );
+  
+  return headerTl;
 }
 
 // -------------------- Mobile Menu --------------------
@@ -350,73 +392,54 @@ function initHeroAnimations() {
   const splitSurname = new SplitText(surname, { type: 'chars' });
   const splitRole = new SplitText(role, { type: 'words' });
   
-  // Master timeline
+  // Set containers visible (children will be animated)
+  gsap.set([greeting, name, surname, role, tagline, cta, scrollHint], { opacity: 1 });
+  
+  // Show content
+  document.getElementById('smooth-content').style.visibility = 'visible';
+  
+  // Master timeline with fromTo animations
   const heroTl = gsap.timeline({
-    defaults: { 
-      ease: 'smoothOut',
-      duration: 1
-    }
+    defaults: { ease: 'smoothOut' }
   });
   
-  // Set initial states
-  gsap.set([greeting, name, surname, role, tagline, cta, scrollHint], { opacity: 1 });
-  gsap.set(splitGreeting.chars, { opacity: 0, y: 30, rotationX: -90 });
-  gsap.set(splitName.chars, { opacity: 0, y: 80, rotationX: -90, scale: 0.8 });
-  gsap.set(splitSurname.chars, { opacity: 0, y: 80, rotationX: -90, scale: 0.8 });
-  gsap.set(splitRole.words, { opacity: 0, y: 40, filter: 'blur(10px)' });
-  gsap.set(tagline, { opacity: 0, y: 30 });
-  gsap.set(cta.children, { opacity: 0, y: 40, scale: 0.9 });
-  gsap.set(scrollHint, { opacity: 0, y: 20 });
+  // Animate header (uses fromTo internally)
+  animateHeader();
   
-  // Animate
+  // Hero animations - all using fromTo
   heroTl
-    .to(splitGreeting.chars, {
-      opacity: 1,
-      y: 0,
-      rotationX: 0,
-      duration: 0.6,
-      stagger: 0.03,
-    })
-    .to(splitName.chars, {
-      opacity: 1,
-      y: 0,
-      rotationX: 0,
-      scale: 1,
-      duration: 0.8,
-      stagger: 0.04,
-      ease: 'elastic',
-    }, '-=0.3')
-    .to(splitSurname.chars, {
-      opacity: 1,
-      y: 0,
-      rotationX: 0,
-      scale: 1,
-      duration: 0.8,
-      stagger: 0.04,
-      ease: 'elastic',
-    }, '-=0.6')
-    .to(splitRole.words, {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      duration: 0.7,
-      stagger: 0.12,
-    }, '-=0.4')
-    .to(tagline, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-    }, '-=0.3')
-    .to(cta.children, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.7,
-      stagger: 0.15,
-      ease: 'bounce',
-    }, '-=0.4')
-    .to(scrollHint, {
-      opacity: 1,
+    .fromTo(splitGreeting.chars, 
+      { opacity: 0, y: 30, rotationX: -90 },
+      { opacity: 1, y: 0, rotationX: 0, duration: 0.6, stagger: 0.03 }
+    )
+    .fromTo(splitName.chars, 
+      { opacity: 0, y: 80, rotationX: -90, scale: 0.8 },
+      { opacity: 1, y: 0, rotationX: 0, scale: 1, duration: 0.8, stagger: 0.04, ease: 'elastic' },
+      '-=0.3'
+    )
+    .fromTo(splitSurname.chars, 
+      { opacity: 0, y: 80, rotationX: -90, scale: 0.8 },
+      { opacity: 1, y: 0, rotationX: 0, scale: 1, duration: 0.8, stagger: 0.04, ease: 'elastic' },
+      '-=0.6'
+    )
+    .fromTo(splitRole.words, 
+      { opacity: 0, y: 40, filter: 'blur(10px)' },
+      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.7, stagger: 0.12 },
+      '-=0.4'
+    )
+    .fromTo(tagline, 
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.8 },
+      '-=0.3'
+    )
+    .fromTo(cta.children, 
+      { opacity: 0, y: 40, scale: 0.9 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.15, ease: 'bounce' },
+      '-=0.4'
+    )
+    .fromTo(scrollHint, 
+      { opacity: 0, y: 20 },
+      { opacity: 1,
       y: 0,
       duration: 1,
     }, '-=0.3');

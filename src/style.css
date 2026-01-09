@@ -315,6 +315,12 @@ body {
 #smooth-content {
   overflow: visible;
   width: 100%;
+  /* Hidden until JS initializes animations */
+  visibility: hidden;
+}
+
+#smooth-content.ready {
+  visibility: visible;
 }
 
 /* -------------------- Animated Noise Overlay -------------------- */
@@ -713,6 +719,7 @@ img {
 .hero__content {
   max-width: 700px;
 }
+
 
 .hero__greeting {
   font-size: var(--text-lg);
