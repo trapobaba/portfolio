@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ксения Trapobaba — дизайнер презентаций и веб-дизайнер. Создаю визуальные решения, которые работают." />
+  
+  <title>Ксения Trapobaba — Дизайнер презентаций & Веб-дизайн</title>
+  
+  <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  
+  <!-- GSAP Core -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+  
+  <!-- GSAP Plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollSmoother.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollToPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/TextPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/CustomEase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/EasePack.min.js"></script>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+  <!-- Animated Noise Overlay -->
+  <div class="page-noise" aria-hidden="true"></div>
+  
+  <!-- Smooth Scroll Wrapper -->
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+      
+      <!-- Header / Navigation -->
+      <header class="header">
+        <nav class="nav container">
+          <a href="#" class="logo">
+            <span class="logo-text">Trapobaba</span>
+          </a>
+          
+          <ul class="nav-links">
+            <li><a href="#about" class="nav-link">Обо мне</a></li>
+            <li><a href="#portfolio" class="nav-link">Портфолио</a></li>
+            <li><a href="#services" class="nav-link">Услуги</a></li>
+            <li><a href="#contact" class="nav-link nav-link--cta">Связаться</a></li>
+          </ul>
+          
+          <!-- Mobile Menu Button -->
+          <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false">
+            <span class="menu-toggle__line"></span>
+            <span class="menu-toggle__line"></span>
+            <span class="menu-toggle__line"></span>
+          </button>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+          <ul class="mobile-menu__links">
+            <li><a href="#about" class="mobile-menu__link">Обо мне</a></li>
+            <li><a href="#portfolio" class="mobile-menu__link">Портфолио</a></li>
+            <li><a href="#services" class="mobile-menu__link">Услуги</a></li>
+            <li><a href="#contact" class="mobile-menu__link">Связаться</a></li>
+          </ul>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+          <div class="hero__bg-gradient"></div>
+          
+          <div class="container hero__container">
+            <div class="hero__content">
+              <p class="hero__greeting">Привет, я</p>
+              <h1 class="hero__title">
+                <span class="hero__name">Ксения</span>
+                <span class="hero__surname">Trapobaba</span>
+              </h1>
+              <p class="hero__role">Дизайнер презентаций <span class="hero__ampersand">&</span> Веб-дизайнер</p>
+              <p class="hero__tagline">Создаю визуальные решения, которые запоминаются и работают на ваш бизнес</p>
+              
+              <div class="hero__cta">
+                <a href="#portfolio" class="btn btn--primary">
+                  <span class="btn__text">Смотреть работы</span>
+                  <span class="btn__icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                    </svg>
+                  </span>
+                </a>
+                <a href="#contact" class="btn btn--secondary">Написать мне</a>
+              </div>
+            </div>
+            
+            <div class="hero__visual">
+              <div class="hero__shape hero__shape--1"></div>
+              <div class="hero__shape hero__shape--2"></div>
+              <div class="hero__shape hero__shape--3"></div>
+            </div>
+          </div>
+          
+          <div class="hero__scroll-hint">
+            <span>Листай вниз</span>
+            <div class="hero__scroll-line"></div>
+          </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+          <div class="container">
+            <div class="section-header">
+              <span class="section-label">01</span>
+              <h2 class="section-title">Обо мне</h2>
+            </div>
+            
+            <div class="about__content">
+              <div class="about__text">
+                <p class="about__lead">
+                  Я — дизайнер с фокусом на <em>результат</em>. Верю, что хороший дизайн — это не просто красивая картинка, а инструмент, который решает задачи бизнеса.
+                </p>
+                <p class="about__paragraph">
+                  Специализируюсь на дизайне презентаций, веб-дизайне и создании визуального контента для социальных сетей. Каждый проект для меня — это возможность рассказать историю вашего бренда через продуманный визуал.
+                </p>
+                <p class="about__paragraph">
+                  Мой подход: внимание к деталям, чистая эстетика и понимание того, как дизайн влияет на восприятие аудитории.
+                </p>
+              </div>
+              
+              <div class="about__stats">
+                <div class="stat">
+                  <span class="stat__number" data-count="50">0</span>
+                  <span class="stat__plus">+</span>
+                  <span class="stat__label">Проектов завершено</span>
+                </div>
+                <div class="stat">
+                  <span class="stat__number" data-count="3">0</span>
+                  <span class="stat__plus">+</span>
+                  <span class="stat__label">Года опыта</span>
+                </div>
+                <div class="stat">
+                  <span class="stat__number" data-count="30">0</span>
+                  <span class="stat__plus">+</span>
+                  <span class="stat__label">Довольных клиентов</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section class="portfolio" id="portfolio">
+          <div class="portfolio__header">
+            <div class="container">
+              <span class="portfolio__label">Мои работы</span>
+              <h2 class="portfolio__title">Презентации</h2>
+            </div>
+          </div>
+          
+          <div class="portfolio__slider">
+            <div class="portfolio__track">
+              <!-- Case 1 -->
+              <article class="work-card" data-case="1">
+                <div class="work-card__image">
+                  <img src="/imgs/case-1/image 34.png" alt="Презентация Антисвора" loading="lazy"/>
+                </div>
+                <div class="work-card__content">
+                  <span class="work-card__num">01</span>
+                  <h3 class="work-card__title">Антисвора</h3>
+                  <p class="work-card__desc">Презентация сервиса для защиты животных</p>
+                  <button class="work-card__btn">Смотреть слайды</button>
+                </div>
+              </article>
+              
+              <!-- Case 2 -->
+              <article class="work-card" data-case="2">
+                <div class="work-card__image">
+                  <img src="/imgs/case-2/image 36.png" alt="Презентация жилого комплекса" loading="lazy"/>
+                </div>
+                <div class="work-card__content">
+                  <span class="work-card__num">02</span>
+                  <h3 class="work-card__title">Жилой комплекс</h3>
+                  <p class="work-card__desc">Презентация для застройщика недвижимости</p>
+                  <button class="work-card__btn">Смотреть слайды</button>
+                </div>
+              </article>
+              
+              <!-- Case 3 -->
+              <article class="work-card" data-case="3">
+                <div class="work-card__image">
+                  <img src="/imgs/case-3/image 36.png" alt="Презентация Waffles Almaty" loading="lazy"/>
+                </div>
+                <div class="work-card__content">
+                  <span class="work-card__num">03</span>
+                  <h3 class="work-card__title">Waffles Almaty</h3>
+                  <p class="work-card__desc">Презентация для кафе-франшизы</p>
+                  <button class="work-card__btn">Смотреть слайды</button>
+                </div>
+              </article>
+            </div>
+          </div>
+          
+          <div class="container">
+            <div class="portfolio__footer">
+              <p>Ещё больше работ на</p>
+              <a href="https://www.behance.net/trapobaba" target="_blank" rel="noopener noreferrer" class="portfolio__behance">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988H0V5.021h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
+                </svg>
+                Behance
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services" id="services">
+          <div class="services__bg-gradient"></div>
+          
+          <div class="container">
+            <div class="section-header section-header--light">
+              <span class="section-label">03</span>
+              <h2 class="section-title">Услуги</h2>
+              <p class="section-subtitle">Чем я могу быть полезна</p>
+            </div>
+            
+            <div class="services__grid">
+              <!-- Service 1 -->
+              <article class="service-card">
+                <div class="service-card__icon">
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <rect x="6" y="10" width="36" height="28" rx="2" stroke="currentColor" stroke-width="2"/>
+                    <path d="M6 16H42" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="10" cy="13" r="1.5" fill="currentColor"/>
+                    <circle cx="15" cy="13" r="1.5" fill="currentColor"/>
+                    <circle cx="20" cy="13" r="1.5" fill="currentColor"/>
+                    <rect x="12" y="22" width="12" height="2" rx="1" fill="currentColor"/>
+                    <rect x="12" y="28" width="20" height="2" rx="1" fill="currentColor"/>
+                    <rect x="12" y="34" width="8" height="2" rx="1" fill="currentColor"/>
+                  </svg>
+                </div>
+                <h3 class="service-card__title">Дизайн презентаций</h3>
+                <p class="service-card__description">
+                  Создание презентаций для бизнеса, питчей, продаж и обучения. Keynote, PowerPoint, Google Slides.
+                </p>
+                <ul class="service-card__features">
+                  <li>Pitch-деки для инвесторов</li>
+                  <li>Корпоративные презентации</li>
+                  <li>Шаблоны для команды</li>
+                </ul>
+              </article>
+              
+              <!-- Service 2 -->
+              <article class="service-card">
+                <div class="service-card__icon">
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <rect x="8" y="6" width="32" height="36" rx="2" stroke="currentColor" stroke-width="2"/>
+                    <path d="M16 18L22 24L16 30" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M26 30H32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <h3 class="service-card__title">Веб-дизайн</h3>
+                <p class="service-card__description">
+                  Разработка дизайна сайтов и лендингов в Figma. Современный UI/UX с фокусом на конверсию.
+                </p>
+                <ul class="service-card__features">
+                  <li>Лендинги и сайты-визитки</li>
+                  <li>Корпоративные сайты</li>
+                  <li>Интернет-магазины</li>
+                </ul>
+              </article>
+              
+              <!-- Service 3 -->
+              <article class="service-card">
+                <div class="service-card__icon">
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <rect x="4" y="8" width="40" height="32" rx="2" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="18" cy="22" r="6" stroke="currentColor" stroke-width="2"/>
+                    <path d="M4 34L14 26L22 32L32 22L44 32" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <h3 class="service-card__title">Оформление постов</h3>
+                <p class="service-card__description">
+                  Визуальный контент для социальных сетей: посты, сторис, карусели, визуальная стратегия.
+                </p>
+                <ul class="service-card__features">
+                  <li>Посты и карусели</li>
+                  <li>Stories и Reels</li>
+                  <li>Визуальная сетка</li>
+                </ul>
+              </article>
+              
+              <!-- Service 4 -->
+              <article class="service-card">
+                <div class="service-card__icon">
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <rect x="6" y="12" width="36" height="24" rx="2" stroke="currentColor" stroke-width="2"/>
+                    <path d="M20 20L30 24L20 28V20Z" fill="currentColor"/>
+                    <path d="M24 36V42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M16 42H32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <h3 class="service-card__title">Обложки для видео</h3>
+                <p class="service-card__description">
+                  Превью и обложки для YouTube, курсов, вебинаров. Дизайн, который привлекает клики.
+                </p>
+                <ul class="service-card__features">
+                  <li>YouTube превью</li>
+                  <li>Обложки курсов</li>
+                  <li>Баннеры каналов</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+          <div class="container">
+            <div class="section-header">
+              <span class="section-label">04</span>
+              <h2 class="section-title">Связаться</h2>
+              <p class="section-subtitle">Обсудим ваш проект?</p>
+            </div>
+            
+            <div class="contact__content">
+              <div class="contact__info">
+                <p class="contact__lead">
+                  Открыта к интересным проектам и сотрудничеству. Напишите мне, и я отвечу в течение 24 часов.
+                </p>
+                
+                <div class="contact__socials">
+                  <a href="https://t.me/trapobaba" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                    </svg>
+                    <span>Telegram</span>
+                  </a>
+                  
+                  <a href="https://www.behance.net/trapobaba" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988H0V5.021h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
+                    </svg>
+                    <span>Behance</span>
+                  </a>
+                  
+                  <a href="https://kwork.ru/user/trapobaba" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    <span>Kwork</span>
+                  </a>
+                </div>
+              </div>
+              
+              <form class="contact-form" id="contact-form">
+                <div class="form-group">
+                  <label for="name" class="form-label">Имя</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    class="form-input" 
+                    placeholder="Как вас зовут?"
+                    required
+                  />
+                </div>
+                
+                <div class="form-group">
+                  <label for="email" class="form-label">Email</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    class="form-input" 
+                    placeholder="email@example.com"
+                    required
+                  />
+                </div>
+                
+                <div class="form-group">
+                  <label for="message" class="form-label">Сообщение</label>
+                  <textarea 
+                    id="message" 
+                    name="message" 
+                    class="form-input form-textarea" 
+                    placeholder="Расскажите о вашем проекте..."
+                    rows="5"
+                    required
+                  ></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn--primary btn--full">
+                  <span class="btn__text">Отправить сообщение</span>
+                  <span class="btn__icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13"/>
+                    </svg>
+                  </span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer__gradient"></div>
+        <div class="footer__noise"></div>
+        
+        <div class="container">
+          <div class="footer__top">
+            <div class="footer__brand">
+              <a href="#" class="footer__logo">
+                <span class="footer__logo-text">Trapobaba</span>
+                <span class="footer__logo-dot"></span>
+              </a>
+              <p class="footer__tagline">Создаю визуальные решения,<br>которые работают на вас</p>
+            </div>
+            
+            <div class="footer__nav">
+              <h4 class="footer__nav-title">Навигация</h4>
+              <ul class="footer__nav-list">
+                <li><a href="#about" class="footer__link">Обо мне</a></li>
+                <li><a href="#portfolio" class="footer__link">Портфолио</a></li>
+                <li><a href="#services" class="footer__link">Услуги</a></li>
+                <li><a href="#contact" class="footer__link">Контакты</a></li>
+              </ul>
+            </div>
+            
+            <div class="footer__contact">
+              <h4 class="footer__nav-title">Связаться</h4>
+              <div class="footer__socials">
+                <a href="https://t.me/trapobaba" class="footer__social" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                  </svg>
+                </a>
+                <a href="https://www.behance.net/trapobaba" class="footer__social" target="_blank" rel="noopener noreferrer" aria-label="Behance">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988H0V5.021h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/>
+                  </svg>
+                </a>
+                <a href="https://kwork.ru/user/trapobaba" class="footer__social" target="_blank" rel="noopener noreferrer" aria-label="Kwork">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h8v2H6zm10 0h2v2h-2zm-6-4h8v2h-8z"/>
+                  </svg>
+                </a>
+              </div>
+              <a href="mailto:hello@trapobaba.com" class="footer__email">hello@trapobaba.com</a>
+            </div>
+          </div>
+          
+          <div class="footer__divider"></div>
+          
+          <div class="footer__bottom">
+            <p class="footer__copyright">© 2026 Ксения Trapobaba. Все права защищены.</p>
+            <p class="footer__made">
+              <span class="footer__heart">♥</span>
+              Сделано с любовью и вниманием к деталям
+            </p>
+          </div>
+        </div>
+      </footer>
+      
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox__close" aria-label="Закрыть">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--prev" aria-label="Предыдущий">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--next" aria-label="Следующий">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </button>
+    <div class="lightbox__content">
+      <img src="" alt="" class="lightbox__image"/>
+    </div>
+    <div class="lightbox__counter">
+      <span class="lightbox__current">1</span> / <span class="lightbox__total">1</span>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
