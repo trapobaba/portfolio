@@ -12,49 +12,52 @@ CustomEase.create("smoothInOut", "M0,0 C0.65,0 0.35,1 1,1");
 CustomEase.create("elastic", "M0,0 C0.5,0 0.5,1.5 1,1");
 CustomEase.create("bounce", "M0,0 C0.2,0 0.4,1.28 0.6,1.02 C0.8,0.76 1,1 1,1");
 
+// Base URL for assets (works with Vite base config)
+const BASE_URL = import.meta.env.BASE_URL || '/';
+
 // Portfolio images data
 const portfolioData = {
   1: {
     title: 'Бизнес-презентация',
     category: 'Дизайн презентаций',
     images: [
-      '/imgs/case-1/image 34.png',
-      '/imgs/case-1/image 35.png',
-      '/imgs/case-1/image 36.png',
-      '/imgs/case-1/image 37.png',
-      '/imgs/case-1/image 38.png',
-      '/imgs/case-1/image 39.png',
-      '/imgs/case-1/image 40.png',
+      'imgs/case-1/image 34.png',
+      'imgs/case-1/image 35.png',
+      'imgs/case-1/image 36.png',
+      'imgs/case-1/image 37.png',
+      'imgs/case-1/image 38.png',
+      'imgs/case-1/image 39.png',
+      'imgs/case-1/image 40.png',
     ]
   },
   2: {
     title: 'Лендинг для стартапа',
     category: 'Веб-дизайн',
     images: [
-      '/imgs/case-2/image 36.png',
-      '/imgs/case-2/image 37.png',
-      '/imgs/case-2/image 38.png',
-      '/imgs/case-2/image 39.png',
-      '/imgs/case-2/image 40.png',
-      '/imgs/case-2/image 41.png',
-      '/imgs/case-2/image 42.png',
-      '/imgs/case-2/image 43.png',
-      '/imgs/case-2/image 44.png',
+      'imgs/case-2/image 36.png',
+      'imgs/case-2/image 37.png',
+      'imgs/case-2/image 38.png',
+      'imgs/case-2/image 39.png',
+      'imgs/case-2/image 40.png',
+      'imgs/case-2/image 41.png',
+      'imgs/case-2/image 42.png',
+      'imgs/case-2/image 43.png',
+      'imgs/case-2/image 44.png',
     ]
   },
   3: {
     title: 'SMM-визуал',
     category: 'Оформление постов',
     images: [
-      '/imgs/case-3/image 36.png',
-      '/imgs/case-3/image 37.png',
-      '/imgs/case-3/image 38.png',
-      '/imgs/case-3/image 39.png',
-      '/imgs/case-3/image 40.png',
-      '/imgs/case-3/image 41.png',
-      '/imgs/case-3/image 42.png',
-      '/imgs/case-3/image 43.png',
-      '/imgs/case-3/image 44.png',
+      'imgs/case-3/image 36.png',
+      'imgs/case-3/image 37.png',
+      'imgs/case-3/image 38.png',
+      'imgs/case-3/image 39.png',
+      'imgs/case-3/image 40.png',
+      'imgs/case-3/image 41.png',
+      'imgs/case-3/image 42.png',
+      'imgs/case-3/image 43.png',
+      'imgs/case-3/image 44.png',
     ]
   }
 };
@@ -710,7 +713,7 @@ function initLightbox() {
       scale: 0.95,
       duration: 0.15,
       onComplete: () => {
-        lightboxImage.src = currentImages[currentIndex];
+        lightboxImage.src = BASE_URL + currentImages[currentIndex];
         lightboxCurrent.textContent = currentIndex + 1;
         
         gsap.to(lightboxImage, {
