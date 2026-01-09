@@ -18,46 +18,46 @@ const BASE_URL = import.meta.env.BASE_URL || '/';
 // Portfolio images data
 const portfolioData = {
   1: {
-    title: 'Бизнес-презентация',
+    title: 'Антисвора',
     category: 'Дизайн презентаций',
     images: [
-      'imgs/case-1/image 34.png',
-      'imgs/case-1/image 35.png',
-      'imgs/case-1/image 36.png',
-      'imgs/case-1/image 37.png',
-      'imgs/case-1/image 38.png',
-      'imgs/case-1/image 39.png',
-      'imgs/case-1/image 40.png',
+      'imgs/case-1/img-1.png',
+      'imgs/case-1/img-2.png',
+      'imgs/case-1/img-3.png',
+      'imgs/case-1/img-4.png',
+      'imgs/case-1/img-5.png',
+      'imgs/case-1/img-6.png',
+      'imgs/case-1/img-7.png',
     ]
   },
   2: {
-    title: 'Лендинг для стартапа',
-    category: 'Веб-дизайн',
+    title: 'Жилой комплекс',
+    category: 'Дизайн презентаций',
     images: [
-      'imgs/case-2/image 36.png',
-      'imgs/case-2/image 37.png',
-      'imgs/case-2/image 38.png',
-      'imgs/case-2/image 39.png',
-      'imgs/case-2/image 40.png',
-      'imgs/case-2/image 41.png',
-      'imgs/case-2/image 42.png',
-      'imgs/case-2/image 43.png',
-      'imgs/case-2/image 44.png',
+      'imgs/case-2/img-1.png',
+      'imgs/case-2/img-2.png',
+      'imgs/case-2/img-3.png',
+      'imgs/case-2/img-4.png',
+      'imgs/case-2/img-5.png',
+      'imgs/case-2/img-6.png',
+      'imgs/case-2/img-7.png',
+      'imgs/case-2/img-8.png',
+      'imgs/case-2/img-9.png',
     ]
   },
   3: {
-    title: 'SMM-визуал',
-    category: 'Оформление постов',
+    title: 'Waffles Almaty',
+    category: 'Дизайн презентаций',
     images: [
-      'imgs/case-3/image 36.png',
-      'imgs/case-3/image 37.png',
-      'imgs/case-3/image 38.png',
-      'imgs/case-3/image 39.png',
-      'imgs/case-3/image 40.png',
-      'imgs/case-3/image 41.png',
-      'imgs/case-3/image 42.png',
-      'imgs/case-3/image 43.png',
-      'imgs/case-3/image 44.png',
+      'imgs/case-3/img-1.png',
+      'imgs/case-3/img-2.png',
+      'imgs/case-3/img-3.png',
+      'imgs/case-3/img-4.png',
+      'imgs/case-3/img-5.png',
+      'imgs/case-3/img-6.png',
+      'imgs/case-3/img-7.png',
+      'imgs/case-3/img-8.png',
+      'imgs/case-3/img-9.png',
     ]
   }
 };
@@ -69,6 +69,114 @@ let cursorFollower;
 
 // -------------------- Initialize App --------------------
 document.addEventListener('DOMContentLoaded', () => {
+  initPreloader();
+});
+
+// -------------------- Preloader --------------------
+function initPreloader() {
+  const preloader = document.getElementById('preloader');
+  const progressBar = document.querySelector('.preloader__progress-bar');
+  const counter = document.querySelector('.preloader__number');
+  const letters = document.querySelectorAll('.preloader__letter');
+  const shapes = document.querySelectorAll('.preloader__shape');
+  
+  if (!preloader) {
+    initApp();
+    return;
+  }
+
+  // Create preloader timeline
+  const tl = gsap.timeline();
+  
+  // Animate shapes entrance
+  tl.fromTo(shapes, 
+    { scale: 0, opacity: 0 },
+    { 
+      scale: 1, 
+      opacity: 0.4, 
+      duration: 1.5, 
+      stagger: 0.2,
+      ease: "power2.out"
+    }
+  );
+  
+  // Animate letters entrance with 3D effect
+  tl.to(letters, {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    duration: 0.8,
+    stagger: 0.06,
+    ease: "back.out(1.7)"
+  }, "-=1");
+  
+  // Counter animation
+  let progress = { value: 0 };
+  
+  tl.to(progress, {
+    value: 100,
+    duration: 2.5,
+    ease: "power2.inOut",
+    onUpdate: () => {
+      const val = Math.round(progress.value);
+      counter.textContent = val;
+      progressBar.style.width = val + '%';
+    }
+  }, "-=0.5");
+  
+  // After loading complete - exit animation
+  tl.add(() => {
+    completePreloader();
+  });
+  
+  function completePreloader() {
+    const exitTl = gsap.timeline({
+      onComplete: () => {
+        preloader.style.display = 'none';
+        initApp();
+      }
+    });
+    
+    // Letters fly up and out
+    exitTl.to(letters, {
+      y: -80,
+      opacity: 0,
+      rotateX: 90,
+      duration: 0.5,
+      stagger: 0.03,
+      ease: "power2.in"
+    });
+    
+    // Counter fades
+    exitTl.to([counter.parentElement, progressBar.parentElement], {
+      opacity: 0,
+      y: -30,
+      duration: 0.4,
+      ease: "power2.in"
+    }, "-=0.3");
+    
+    // Shapes expand and fade
+    exitTl.to(shapes, {
+      scale: 3,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: "power2.in"
+    }, "-=0.4");
+    
+    // Background slides up (curtain reveal)
+    exitTl.to('.preloader__bg', {
+      scaleY: 0,
+      transformOrigin: 'top',
+      duration: 1,
+      stagger: 0.15,
+      ease: CustomEase.create("custom", "M0,0 C0.25,0 0.1,1 1,1")
+    }, "-=0.6");
+  }
+}
+
+// Initialize all app features
+function initApp() {
   initAnimatedNoise();
   createCustomCursor();
   initSmoothScroll();
@@ -82,7 +190,15 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavLinks();
   initMagneticElements();
   initTextRevealEffects();
-});
+  
+  // Show noise
+  const noise = document.querySelector('.page-noise');
+  if (noise) {
+    setTimeout(() => {
+      noise.classList.add('page-noise--visible');
+    }, 500);
+  }
+}
 
 // -------------------- Animated Noise --------------------
 function initAnimatedNoise() {
@@ -103,14 +219,6 @@ function initAnimatedNoise() {
   setAppHeight();
   window.addEventListener('resize', setAppHeight);
 }
-
-// Show noise after page loads
-window.addEventListener('load', () => {
-  const noise = document.querySelector('.page-noise');
-  if (noise) {
-    noise.classList.add('page-noise--visible');
-  }
-});
 
 // -------------------- Custom Cursor --------------------
 function createCustomCursor() {
